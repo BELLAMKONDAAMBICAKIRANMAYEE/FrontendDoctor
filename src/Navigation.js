@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 const Navigation = () => {
     return (
-        <nav>
-
+        <nav className="navbar">
+           <a id="logo">TRUE <span>CARE +</span></a>
             <Link to="/">Home</Link>
 
             <Link to="/doctors">Doctors</Link>

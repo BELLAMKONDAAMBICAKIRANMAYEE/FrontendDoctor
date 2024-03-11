@@ -56,7 +56,8 @@ const Home = () => {
   };
 
   return (
-    <div>
+   <center>
+     <div>
       <h2>Patients</h2>
       <label>Select Doctor: </label>
       <select onChange={handleDoctorChange}>
@@ -112,6 +113,7 @@ const Home = () => {
         />
       )}
     </div>
+   </center>
   );
 };
 

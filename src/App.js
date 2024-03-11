@@ -8,8 +8,8 @@ import Home from './Home';
 import Navigation from './Navigation';
 import './App.css';
 
-class App extends React.Component{
-  render(){
+function App(){
+  
    return(
     <BrowserRouter>
       <Navigation />
@@ -21,5 +21,5 @@ class App extends React.Component{
     </BrowserRouter>
    )
   }
-}
+
 export default App

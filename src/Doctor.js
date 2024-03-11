@@ -8,7 +8,7 @@ const Doctor = () => {
    //get
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get('https://backendhospital-ji3g.onrender.com/doctors'); // Replace with your actual endpoint
+        const response = await axios.get('https://backendhospital-ji3g.onrender.com/doctors');
         setDoctors(response.data);
       } catch (error) {
         console.error('Error fetching doctors:', error);
