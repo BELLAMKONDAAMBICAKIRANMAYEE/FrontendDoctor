@@ -28,8 +28,9 @@ const Home = () => {
     const selectedDoctorId = parseInt(event.target.value);
     setSelectedDoctorId(selectedDoctorId);
   };
+
   const filteredPatients = selectedDoctorId
-    ? patients.filter(patient => patient.doctor.id === selectedDoctorId)
+    ? patients.filter(patient => patient.doctor?.id === selectedDoctorId)
     : patients;
 
   const handleEdit = (patientId) => {
@@ -41,7 +42,6 @@ const Home = () => {
   };
 
   const handleUpdate = () => {
-
     setEditPatientId(null);
   };
 
@@ -56,64 +56,63 @@ const Home = () => {
   };
 
   return (
-   <center>
-     <div>
-      <h2>Patients</h2>
-      <label>Select Doctor: </label>
-      <select onChange={handleDoctorChange}>
-        <option value={null}>All Doctors</option>
-        {doctors.map((doctor) => (
-          <option key={doctor.id} value={doctor.id}>
-            {doctor.name} - {doctor.specialization}
-          </option>
-        ))}
-      </select>
-
-      <table>
-        <thead>
-          <tr>
-
-            <th>Name</th>
-            <th>Weight</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>Disease</th>
-            <th>Doctor</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredPatients.map((patient) => (
-            <tr key={patient.id}>
-
-              <td>{patient.name}</td>
-              <td>{patient.weight}</td>
-              <td>{patient.gender}</td>
-              <td>{patient.age}</td>
-              <td>{patient.disease}</td>
-              <td>{patient.doctor.name} - {patient.doctor.specialization}</td>
-              <td>
-                <button onClick={() => handleEdit(patient.id)}>Edit</button>
-              </td>
-              <td>
-                <button onClick={() => handleDelete(patient.id)}>Delete</button>
-              </td>
-            </tr>
+    <center>
+      <div>
+        <h2>Patients</h2>
+        <label>Select Doctor: </label>
+        <select onChange={handleDoctorChange}>
+          <option value={null}>All Doctors</option>
+          {doctors.map((doctor) => (
+            <option key={doctor.id} value={doctor.id}>
+              {doctor.name} - {doctor.specialization}
+            </option>
           ))}
-        </tbody>
-      </table>
+        </select>
 
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Weight</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th>Disease</th>
+              <th>Doctor</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredPatients.map((patient) => (
+              <tr key={patient.id}>
+                <td>{patient.name}</td>
+                <td>{patient.weight}</td>
+                <td>{patient.gender}</td>
+                <td>{patient.age}</td>
+                <td>{patient.disease}</td>
+                <td>
+                  {patient.doctor?.name} - {patient.doctor?.specialization}
+                </td>
+                <td>
+                  <button onClick={() => handleEdit(patient.id)}>Edit</button>
+                </td>
+                <td>
+                  <button onClick={() => handleDelete(patient.id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-      {editPatientId !== null && (
-        <EditPatient
-          patientId={editPatientId}
-          onClose={handleCloseEdit}
-          onUpdate={handleUpdate}
-        />
-      )}
-    </div>
-   </center>
+        {editPatientId !== null && (
+          <EditPatient
+            patientId={editPatientId}
+            onClose={handleCloseEdit}
+            onUpdate={handleUpdate}
+          />
+        )}
+      </div>
+    </center>
   );
 };
 
